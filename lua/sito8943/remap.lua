@@ -1,33 +1,10 @@
 vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>gs", vim.cmd.Git)
 
--- Función para intercambiar dos líneas
-local function swap_lines(n1, n2)
-  local line1 = vim.fn.getline(n1)
-  local line2 = vim.fn.getline(n2)
-  vim.fn.setline(n1, line2)
-  vim.fn.setline(n2, line1)
-end
-
--- Mover línea actual hacia arriba
-local function swap_up()
-  local n = vim.fn.line('.')
-  if n == 1 then return end
-  swap_lines(n, n - 1)
-  vim.cmd((n - 1) .. "G") -- Mover el cursor a la línea nueva
-end
-
--- Mover línea actual hacia abajo
-local function swap_down()
-  local n = vim.fn.line('.')
-  if n == vim.fn.line('$') then return end
-  swap_lines(n, n + 1)
-  vim.cmd((n + 1) .. "G")
-end
-
--- Keymaps para mover líneas con Ctrl + Shift + ↑ / ↓
-vim.keymap.set('n', '<C-S-Up>', swap_up, { noremap = true, silent = true })
-vim.keymap.set('n', '<C-S-Down>', swap_down, { noremap = true, silent = true })
+-- move current line down
+vim.keymap.set('n', '<A-Down>', "ddp", { noremap = true, silent = true })
+-- move current line up
+vim.keymap.set('n', '<A-Up>', "ddkP", { noremap = true, silent = true })
 
 -- Split vertical y mover foco a la derecha
 vim.keymap.set('n', '<C-\\>', ':vsp<CR><C-w>l', { noremap = true, silent = true })
