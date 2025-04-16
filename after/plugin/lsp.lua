@@ -1,28 +1,156 @@
--- Add cmp_nvim_lsp capabilities settings to lspconfig
--- This should be executed before you configure any language server
-local lspconfig_defaults = require('lspconfig').util.default_config
-lspconfig_defaults.capabilities = vim.tbl_deep_extend(
-  'force',
-  lspconfig_defaults.capabilities,
-  require('cmp_nvim_lsp').default_capabilities()
-)
+return {
+	-- tools
+	{
+		"williamboman/mason.nvim",
+		opts = function(_, opts)
+			vim.list_extend(opts.ensure_installed, {
+				"stylua",
+				"selene",
+				"luacheck",
+				"shellcheck",
+				"shfmt",
+				"tailwindcss-language-server",
+				"typescript-language-server",
+				"css-lsp",
+			})
+		end,
+	},
 
--- This is where you enable features that only work
--- if there is a language server active in the file
-vim.api.nvim_create_autocmd('LspAttach', {
-  desc = 'LSP actions',
-  callback = function(event)
-    local opts = {buffer = event.buf}
-
-    vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
-    vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
-    vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
-    vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
-    vim.keymap.set('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
-    vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
-    vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
-    vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
-    vim.keymap.set({'n', 'x'}, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
-    vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
-  end,
-})
+	-- lsp servers
+	{
+		"neovim/nvim-lspconfig",
+		opts = {
+			inlay_hints = { enabled = false },
+			---@type lspconfig.options
+			servers = {
+				cssls = {},
+				tailwindcss = {
+					root_dir = function(...)
+						return require("lspconfig.util").root_pattern(".git")(...)
+					end,
+				},
+				tsserver = {
+					root_dir = function(...)
+						return require("lspconfig.util").root_pattern(".git")(...)
+					end,
+					single_file_support = false,
+					settings = {
+						typescript = {
+							inlayHints = {
+								includeInlayParameterNameHints = "literal",
+								includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+								includeInlayFunctionParameterTypeHints = true,
+								includeInlayVariableTypeHints = false,
+								includeInlayPropertyDeclarationTypeHints = true,
+								includeInlayFunctionLikeReturnTypeHints = true,
+								includeInlayEnumMemberValueHints = true,
+							},
+						},
+						javascript = {
+							inlayHints = {
+								includeInlayParameterNameHints = "all",
+								includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+								includeInlayFunctionParameterTypeHints = true,
+								includeInlayVariableTypeHints = true,
+								includeInlayPropertyDeclarationTypeHints = true,
+								includeInlayFunctionLikeReturnTypeHints = true,
+								includeInlayEnumMemberValueHints = true,
+							},
+						},
+					},
+				},
+				html = {},
+				yamlls = {
+					settings = {
+						yaml = {
+							keyOrdering = false,
+						},
+					},
+				},
+				lua_ls = {
+					-- enabled = false,
+					single_file_support = true,
+					settings = {
+						Lua = {
+							workspace = {
+								checkThirdParty = false,
+							},
+							completion = {
+								workspaceWord = true,
+								callSnippet = "Both",
+							},
+							misc = {
+								parameters = {
+									-- "--log-level=trace",
+								},
+							},
+							hint = {
+								enable = true,
+								setType = false,
+								paramType = true,
+								paramName = "Disable",
+								semicolon = "Disable",
+								arrayIndex = "Disable",
+							},
+							doc = {
+								privateName = { "^_" },
+							},
+							type = {
+								castNumberToInteger = true,
+							},
+							diagnostics = {
+								disable = { "incomplete-signature-doc", "trailing-space" },
+								-- enable = false,
+								groupSeverity = {
+									strong = "Warning",
+									strict = "Warning",
+								},
+								groupFileStatus = {
+									["ambiguity"] = "Opened",
+									["await"] = "Opened",
+									["codestyle"] = "None",
+									["duplicate"] = "Opened",
+									["global"] = "Opened",
+									["luadoc"] = "Opened",
+									["redefined"] = "Opened",
+									["strict"] = "Opened",
+									["strong"] = "Opened",
+									["type-check"] = "Opened",
+									["unbalanced"] = "Opened",
+									["unused"] = "Opened",
+								},
+								unusedLocalExclude = { "_*" },
+							},
+							format = {
+								enable = false,
+								defaultConfig = {
+									indent_style = "space",
+									indent_size = "2",
+									continuation_indent_size = "2",
+								},
+							},
+						},
+					},
+				},
+			},
+			setup = {},
+		},
+	},
+	{
+		"neovim/nvim-lspconfig",
+		opts = function()
+			local keys = require("lazyvim.plugins.lsp.keymaps").get()
+			vim.list_extend(keys, {
+				{
+					"gd",
+					function()
+						-- DO NOT RESUSE WINDOW
+						require("telescope.builtin").lsp_definitions({ reuse_win = false })
+					end,
+					desc = "Goto Definition",
+					has = "definition",
+				},
+			})
+		end,
+	},
+}
