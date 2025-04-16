@@ -22,3 +22,5 @@ vim.keymap.set('n', '<CR>', 'o', { noremap = true, silent = true })
 -- Shift Enter goes from normal mode, makes a jump to above line and enters in append mode:
 vim.keymap.set('n', '<S-CR>', 'O', { noremap = true, silent = true })
 
+-- Select all
+vim.keymap.set("n", "<C-a>", "gg<S-v>G")
