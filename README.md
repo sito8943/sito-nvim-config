@@ -38,7 +38,7 @@ And enjoy 🥳👌
 
 Sorry I don't use MacOS yet, be the **first** and make me a PR with that LOL
 
-### Notas extras 👁️
+### Extra notes 👁️
 
 #### Prettier
 
