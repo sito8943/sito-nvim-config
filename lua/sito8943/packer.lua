@@ -61,4 +61,10 @@ return require('packer').startup(function(use)
             require("nvim-autopairs").setup {}
         end 
     }
+    -- hex color preview
+    use("NvChad/nvim-colorizer.lua")
+    -- indent raindow
+    use("lukas-reineke/indent-blankline.nvim")
+    -- raindow brackets
+--    use("HiPhish/rainbow-delimiters.nvim")
 end)
