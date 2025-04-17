@@ -1,6 +1,9 @@
 vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>gs", vim.cmd.Git)
 
+-- to jump to line
+vim.keymap.set("n", "<C-g>", ":", { noremap = true })
+
 -- to search
 vim.keymap.set("n", "<C-f>", "/", { noremap = true })
 
