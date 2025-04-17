@@ -8,7 +8,7 @@ First go to global config folder
 cd ~/.config
 ```
 
-There clone the project. *Don't worry clonning the repo will create nvim folder 🤭*
+There clone the project. *Don't worry clonning the repo will create nvim folder* 🤭
 
 ```
 git clone https://github.com/sito8943/sito-nvim-config.git
@@ -26,7 +26,7 @@ cd C:\Users\[YOUR USER NAME]\AppData\Local
 ```
 *Note: Where in [YOUR USER NAME] goes your user name*
 
-There clone the project. *Don't worry clonning the repo will create nvim folder 🤭*
+There clone the project. *Don't worry clonning the repo will create nvim folder* 🤭
 
 ```
 git clone https://github.com/sito8943/sito-nvim-config.git
@@ -37,3 +37,16 @@ And enjoy 🥳👌
 ## MacOS
 
 Sorry I don't use MacOS yet, be the **first** and make me a PR with that LOL
+
+### Extra notes 👁️
+
+#### Prettier
+
+For `JS`, `JSX`, `JSON`, `JSONC` I will be using **Prettier** so be sure to install it
+
+```
+npm install -g prettier
+```
+
+and have a file `.prettierrc` in your project root folder 📂 
+
