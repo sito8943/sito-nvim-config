@@ -23,6 +23,8 @@ return require('packer').startup(function(use)
 	use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
 	use('nvim-treesitter/playground')
     -- end treesitter stuff
+    -- for prettier
+    use("nvimtools/none-ls.nvim")
     -- thanks of theprimeagen for made this
 	use('theprimeagen/harpoon')
     -- undo tree 
