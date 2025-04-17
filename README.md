@@ -37,3 +37,16 @@ And enjoy 🥳👌
 ## MacOS
 
 Sorry I don't use MacOS yet, be the **first** and make me a PR with that LOL
+
+### Notas extras 👁️
+
+#### Prettier
+
+For `JS`, `JSX`, `JSON`, `JSONC` I will be using **Prettier** so be sure to install it
+
+```
+npm install -g prettier
+```
+
+and have a file `.prettierrc` in your project root folder 📂 
+
