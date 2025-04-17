@@ -59,7 +59,4 @@ return require('packer').startup(function(use)
             require("nvim-autopairs").setup {}
         end 
     }
-
-    -- to search string in a file
-    use("dyng/ctrlsf.vim")
 end)
