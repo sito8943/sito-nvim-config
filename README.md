@@ -8,7 +8,7 @@ First go to global config folder
 cd ~/.config
 ```
 
-There clone the project. *Don't worry clonning the repo will create nvim folder 🤭*
+There clone the project. *Don't worry clonning the repo will create nvim folder* 🤭
 
 ```
 git clone https://github.com/sito8943/sito-nvim-config.git
@@ -26,7 +26,7 @@ cd C:\Users\[YOUR USER NAME]\AppData\Local
 ```
 *Note: Where in [YOUR USER NAME] goes your user name*
 
-There clone the project. *Don't worry clonning the repo will create nvim folder 🤭*
+There clone the project. *Don't worry clonning the repo will create nvim folder* 🤭
 
 ```
 git clone https://github.com/sito8943/sito-nvim-config.git
