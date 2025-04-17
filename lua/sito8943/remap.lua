@@ -1,6 +1,9 @@
 vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>gs", vim.cmd.Git)
 
+-- to search
+vim.keymap.set("n", "<C-f>", "/", { noremap = true })
+
 -- move current line down
 vim.keymap.set('n', '<A-Down>', "ddp", { noremap = true, silent = true })
 -- move current line up
