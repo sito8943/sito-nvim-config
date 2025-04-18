@@ -40,10 +40,14 @@ return require('packer').startup(function(use)
 	}
 
     -- start lsp stuff
-	use({'neovim/nvim-lspconfig'})
-	use({'hrsh7th/nvim-cmp'})
-	use({'hrsh7th/cmp-nvim-lsp'})
-    use("williamboman/mason.nvim")
+    use {
+      'neovim/nvim-lspconfig',          -- LSP configs
+      'hrsh7th/nvim-cmp',               -- Autocompletion
+      'hrsh7th/cmp-nvim-lsp',           -- LSP source for nvim-cmp
+      'L3MON4D3/LuaSnip',               -- Snippet engine
+      'saadparwaiz1/cmp_luasnip',       -- Snippet source for nvim-cmp
+      'rafamadriz/friendly-snippets',   -- Snippet collection
+    }
     -- end lsp stuff
 
     -- term control
