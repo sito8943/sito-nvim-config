@@ -64,4 +64,10 @@ return require('packer').startup(function(use)
     -- hex color preview
     use("NvChad/nvim-colorizer.lua")
 
+    -- status bar
+    use {
+      'nvim-lualine/lualine.nvim',
+      requires = { 'nvim-tree/nvim-web-devicons', opt = true }
+    }
+
 end)
